@@ -1,0 +1,84 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0")
+    title J-Stats² | !{data.lastUsername}
+    // links
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.0/css/font-awesome.min.css")
+    
+    link(href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css", rel="stylesheet")
+    link(href="../assets/style.css", rel="stylesheet")
+  body
+    include ../partials/header.pug
+
+    div.container.mt-5
+        h1 !{data.lastUsername}
+        p#q_uuid !{data.uuid}
+        div.row
+            div.col-lg-4
+                div.card.bg-dark
+                    div.card-header
+                        strong Information
+                    div.card-body
+                        div.card-title
+                            label.col-6.col-md-6 Rank
+                            strong #{data.groups[0]}
+                        div.card-title
+                            label.col-6.col-md-6 Playtime
+                            strong #{m.secondsToHour(data.playTime)} hours
+                        div.card-title
+                            label.col-6.col-md-6 Money
+                            strong #{data.money.toLocaleString()}
+                        div.card-title
+                            label.col-6.col-md-6 Level
+                            strong #{data.trustLevel.toLocaleString()}
+                        div.card-title
+                            label.col-6.col-md-6 Score
+                            strong #{data.trustScore.toLocaleString()}
+                        div.card-title
+                            label.col-6.col-md-6 Joined
+                            strong #{m.unixToDate(data.firstJoin)}
+                        div.card-title
+                            label.col-6.col-md-6 Last Join
+                            strong #{m.unixToDate(data.lastJoin)}
+            div.col-lg-4.justify-content-center
+                center
+                    canvas("id"="skin_container")
+
+            div.col-lg-4
+                div.card.bg-dark
+                    div.card-header
+                        strong Actions
+                    div.card-body
+                        div.card-title
+                            label.col-6.col-md-6 Player Kiils
+                            strong #{data.playersKilled}
+                        div.card-title
+                            label.col-6.col-md-6 Mob Kiils
+                            strong #{data.creaturesKilled.toLocaleString()}
+                        div.card-title
+                            label.col-6.col-md-6 Deaths
+                            strong #{data.playerDeaths}
+                        div.card-title
+                            label.col-6.col-md-6 Traveled
+                            strong #{data.metersTraveled.toLocaleString()}
+                        div.card-title
+                            label.col-6.col-md-6 Placed
+                            strong #{data.blocksPlaced.toLocaleString()}
+                        div.card-title
+                            label.col-6.col-md-6 Dropped
+                            strong #{data.itemsDropped.toLocaleString()}
+                        div.card-title
+                            label.col-6.col-md-6 Destroyed
+                            strong #{data.blocksDestroyed.toLocaleString()}
+    
+    // scripts
+    script(src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js")
+    script(src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js")
+    script(src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js")
+    script(src="../assets/skinview3d.bundle.js")
+    script(src="../assets/index.js")
+    script loadPlayerModel()
+    include ../partials/footer.pug
