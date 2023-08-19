@@ -1,0 +1,29 @@
+{
+  "name": "j-stats2",
+  "version": "1.0.0",
+  "description": "The new CIA of RetroMC.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git:retromcorg/j-stats2.git"
+  },
+  "keywords": [
+    "retromc",
+    "beta",
+    "minecraft"
+  ],
+  "author": "0xs",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "compression": "^1.7.4",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "helmet": "^7.0.0",
+    "knex": "^2.5.1",
+    "pug": "^3.0.2"
+  }
+}

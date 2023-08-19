@@ -1,0 +1,13 @@
+nav.navbar.navbar-expand-md.navbar-dark
+    a.navbar-brand("href"="./") J-Stats
+    button.navbar-toggler("type"="button","data-toggle"="collapse", "data-target"="#collapsibleNavbar")
+        span.navbar-toggler-icon 
+    div.collapse.navbar-collapse#collapsibleNavbar
+        ul.navbar-nav.mr-auto 
+            li.nav-item 
+                a.nav-link("href"="./") Home
+        ul.navbar-nav
+            li.item 
+                form.form-horizontal("method"="","id"="searchForm")
+                    div.input-group-prepend
+                        input.form-control.bg-dark("id"="search", "required"="true","placeholder"="Username/UUID...","type"="text")
