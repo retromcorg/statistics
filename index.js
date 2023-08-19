@@ -23,8 +23,6 @@ app.get('/', (req, res) => {
     res.render('index');
 });
 
-
-
 // get the user cape string
 app.get('/api/cape', async (req, res) => {
     if(req.query['uuid']) {
@@ -42,18 +40,41 @@ app.get('/api/cape', async (req, res) => {
     }
 })
 
+app.get('/villages', async (req, res) => {
+    let villages = await m.getVillages();
+    !villages ? res.status(404).render('404') :  res.render('villages', {data: villages,m});  
+})
+
 app.get('/player/:player', async (req, res) => {
-
-    let player = await m.getMojangUser(req.params.player);
-
-    if(player) {
-        let user = await m.getUser(player['uuid']);
-
-        !user ? res.status(404).render('404') :  res.render('player', {data: user,m});
+    if(req.params.player) {
+        if(!m.isUUID(req.params.player)) {
+            let player = await m.getMojangUser(req.params.player);
+            if(player) {
+                let user = await(m.getUser(player['uuid']));
+                !user ? res.status(404).render('404', {type: 'player'}) :  res.render('player', {data: user,m});  
+            }
+            else {
+                res.status(404).render('404', {type: 'player'});        
+            }
+        }
+        else {
+            if(m.isValidUsername(req.params.player)) {
+                let user = await(m.getUser(req.params.player));
+                !user ? res.status(404).render('404', {type: 'player'}) :  res.render('player', {data: user,m});  
+            }
+            else {
+                res.status(404).render('404', {type: 'player'});
+            }
+        }
     }
     else {
-        res.status(404).render('404');
+        res.status(404).render('404', {type: 'player'});    
     }
 });
+
+app.get('*', (req, res) => {
+    res.status(404).render('404');
+});
+
 
 app.listen(process.env.PORT);

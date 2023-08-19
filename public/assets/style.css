@@ -1,13 +1,20 @@
 @font-face {
 font-family: 'Minecraft';
 src: url('fonts/Minecraft-Regular.otf');
+}
 
+@font-face {
+font-family: 'Minecraft-Bold';
+src: url('fonts/Minecraft-Bold.otf');
 }
 
 body {
 background-color: rgb(17, 17, 17);
 color: rgb(219, 219, 219);
-font-family:'Minecraft'
+font-family:'Minecraft';
+font-style: normal;
+font-display: swap;
+font-weight: 400;
 }
 
 a {
@@ -44,9 +51,21 @@ color: rgba(255,255,255,.75);
 }
 
 
+.table thead th {
+border-bottom: 2px solid #333;
+}
+
+.table td, .table th {
+border-top: 1px solid #141414;
+}
+
 .btn-dark {
 background-color: #131313 !important;
 border: #393939 1px solid !important;
+}
+
+.table-dark td, .table-dark th, .table-dark thead th {
+    border: #393939 1px solid !important;
 }
 
 .container {
@@ -73,6 +92,10 @@ text-decoration:wavy;
 
 h2 a {
 text-decoration: none;
+}
+
+.copybtn {
+    cursor: pointer;
 }
 
 code,pre {
@@ -128,4 +151,88 @@ color: #dbdbdb;
 .version {
 color:#00c377;
 font-weight: bolder;
+}
+
+.minecraft-black {
+color: #000000;
+text-shadow: 1px 1px 0 #000000;
+}
+
+.minecraft-dark-blue {
+color: #0000aa;
+text-shadow: 1px 1px 0 #00002a;
+}
+
+.minecraft-dark-green {
+color: #00aa00;
+text-shadow: 1px 1px 0 #002a00;
+}
+
+.minecraft-dark-aqua {
+color: #00aaaa;
+text-shadow: 1px 1px 0 #002a2a;
+}
+
+.minecraft-dark-red {
+color: #aa0000;
+text-shadow: 1px 1px 0 #2a0000;
+}
+
+.minecraft-dark-purple {
+color: #aa00aa;
+text-shadow: 1px 1px 0 #2a002a;
+}
+
+.minecraft-gold {
+color: #ffaa00;
+text-shadow: 1px 1px 0 #2a2a00;
+}
+
+.minecraft-gray {
+color: #aaaaaa;
+text-shadow: 1px 1px 0 #2a2a2a;
+}
+
+.minecraft-dark-gray {
+color: #555555;
+text-shadow: 1px 1px 0 #151515;
+}
+
+.minecraft-blue {
+color: #5555ff;
+text-shadow: 1px 1px 0 #15153f;
+}
+
+.minecraft-green {
+color: #55ff55;
+text-shadow: 1px 1px 0 #153f15;
+}
+
+.minecraft-aqua {
+color: #55ffff;
+text-shadow: 1px 1px 0 #153f3f;
+}
+
+.minecraft-red {
+color: #ff5555;
+text-shadow: 1px 1px 0 #3f1515;
+}
+
+.minecraft-light-purple {
+color: #ff55ff;
+text-shadow: 1px 1px 0 #3f153f;
+}
+
+.minecraft-yellow {
+color: #ffff55;
+text-shadow: 1px 1px 0 #3f3f15;
+}
+
+.minecraft-white {
+color: #ffffff;
+text-shadow: 1px 1px 0 #3f3f3f;
+}
+
+.minecraft-bold {
+    font-family: 'minecraft-bold', monospace;
 }
