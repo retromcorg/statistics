@@ -32,13 +32,18 @@ app.get('/', (req, res) => {
 // get the user cape string
 app.get('/api/cape', async (req, res) => {
     if(req.query['uuid']) {
-        let cape = await m.getUserCape(req.query['uuid']);
+        if(m.isUUID(req.query['uuid'])) {
+            let cape = await m.getUserCape(req.query['uuid']);
 
-        if(cape) {
-            res.json({ cape: cape, status: true});
+            if(cape) {
+                res.json({ cape: cape, status: true});
+            }
+            else {
+                res.status(404).json({status: false, message: "no cape for this user"});  
+            }
         }
         else {
-            res.status(404).json({status: false, message: "no cape for this user"});  
+            res.status(500).json({status: false, message: "invalid uuid entered"});    
         }
     }
     else {

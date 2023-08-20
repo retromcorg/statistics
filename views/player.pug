@@ -31,13 +31,13 @@ html(lang="en")
                             strong #{m.secondsToHour(data.playTime)} hours
                         div.card-title
                             label.col-6.col-md-6 Money
-                            strong #{data.money.toLocaleString()}
+                            strong #{m.formatNumber(data.money)}
                         div.card-title
                             label.col-6.col-md-6 Level
-                            strong #{data.trustLevel.toLocaleString()}
+                            strong #{m.formatNumber(data.trustLevel)}
                         div.card-title
                             label.col-6.col-md-6 Score
-                            strong #{data.trustScore.toLocaleString()}
+                            strong #{m.formatNumber(data.trustScore)}
                         div.card-title
                             label.col-6.col-md-6 Joined
                             strong #{m.unixToDate(data.firstJoin)}
@@ -58,22 +58,22 @@ html(lang="en")
                             strong #{data.playersKilled}
                         div.card-title
                             label.col-6.col-md-6 Mob Kiils
-                            strong #{data.creaturesKilled.toLocaleString()}
+                            strong #{m.formatNumber(data.creaturesKilled)}
                         div.card-title
                             label.col-6.col-md-6 Deaths
                             strong #{data.playerDeaths}
                         div.card-title
                             label.col-6.col-md-6 Traveled
-                            strong #{data.metersTraveled.toLocaleString()}
+                            strong #{m.formatNumber(data.metersTraveled)}
                         div.card-title
                             label.col-6.col-md-6 Placed
-                            strong #{data.blocksPlaced.toLocaleString()}
+                            strong #{m.formatNumber(data.blocksPlaced)}
                         div.card-title
                             label.col-6.col-md-6 Dropped
-                            strong #{data.itemsDropped.toLocaleString()}
+                            strong #{m.formatNumber(data.itemsDropped)}
                         div.card-title
                             label.col-6.col-md-6 Destroyed
-                            strong #{data.blocksDestroyed.toLocaleString()}
+                            strong #{m.formatNumber(data.blocksDestroyed)}
     
     // scripts
     script(src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js")
