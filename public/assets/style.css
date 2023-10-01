@@ -236,3 +236,11 @@ text-shadow: 1px 1px 0 #3f3f3f;
 .minecraft-bold {
     font-family: 'minecraft-bold', monospace;
 }
+
+#playerImg {
+    display: none;
+        display: block;
+	    margin: 0 auto;
+	        margin-top: 20px;
+		    margin-bottom: 20px;
+}

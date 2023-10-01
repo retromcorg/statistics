@@ -1,0 +1,38 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0")
+    meta(name="theme-color", content="#111111")
+    title J-Stats² | Leaderboard
+    // links
+    link(href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css", rel="stylesheet")
+    link(href="../assets/style.css", rel="stylesheet")
+  body
+    include ../partials/header.pug
+
+    div.container.mt-5
+        h1 Leaderboard²
+        p See the top players on RetroMC
+        select.bg-dark.form-control#leaderboard
+          option(disabled=true,selected=true) Select a category
+          each val, index in types
+              option(value=index) #{val}
+
+        table.lb(style="display:none").mt-2
+          thead
+          tr 
+            th #
+            th.img
+            th Player
+              th.type
+          tbody.data
+
+    // scripts
+    script(src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js")
+    script(src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js")
+    script(src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js")
+    script(src="https://cdn.jsdelivr.net/npm/clipboard@2.0.10/dist/clipboard.min.js")
+    script(src="../assets/index.js")
+    include ../partials/footer.pug
