@@ -78,8 +78,8 @@ app.post('/api/searchVillages', async (req, res) => {
                     owner_uuid: element.owner,
                     name: element.name,
                     uuid: element.uuid,
-                    members: element.members.length,
-                    assistants: element.assts.length,
+                    members: JSON.parse(element.members).length,
+                    assistants: JSON.parse(element.assts).length,
                     claims: element.claims
                 });
             });
