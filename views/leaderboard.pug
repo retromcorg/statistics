@@ -20,13 +20,12 @@ html(lang="en")
           each val, index in types
               option(value=index) #{val}
 
-        table.lb(style="display:none").mt-2
+        table.table-sm.stripped.lb(style="display:none").mt-2
           thead
           tr 
-            th #
-            th.img
+            th.text-center #
             th Player
-              th.type
+            th.type
           tbody.data
 
     // scripts

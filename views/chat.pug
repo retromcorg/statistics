@@ -5,7 +5,7 @@ html(lang="en")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0")
     meta(name="theme-color", content="#111111")
-    title J-Stats²
+    title J-Stats² | Chat
     // links
     link(href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css", rel="stylesheet")
     link(href="../assets/style.css", rel="stylesheet")
@@ -13,30 +13,23 @@ html(lang="en")
     include ../partials/header.pug
 
     div.container.mt-5
-        h1 J-Stats²
-        p #[span#cnt] players currently on RetroMC.
+        h1 Chat²
+        p Players currently chatting.
 
         div.card.bg-dark    
-            div.card-header Player List
-            div.card-body.players
-                div.fetchServers
-        br
-
-        div.card.bg-dark
-            div.card-header Players Overtime
-            div.card-body.h-100.d-flex.align-items-center.justify-content-center
-                canvas#myChart(style="width:100%;")
-
+            div.card-header Chat
+            div.card-body.chat-scroll-container
+                div.fetchChat
 
     // scripts
     script(src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js")
     script(src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js")
     script(src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js")
     script(src="https://cdn.jsdelivr.net/npm/clipboard@2.0.10/dist/clipboard.min.js")
-    script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js")
     script(src="../assets/index.js")
     script(src="../assets/mccolors.min.js")
     
-    script loadServer();
+    script loadChat();
     include ../partials/footer.pug

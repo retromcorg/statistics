@@ -15,8 +15,14 @@ html(lang="en")
     include ../partials/header.pug
 
     div.container.mt-5
-        h1 !{data.lastUsername}
-        p#q_uuid !{data.uuid} #[span.fa.fa-clipboard.copybtn.text-primary(data-clipboard-text= data.uuid )]
+        h1#q_username #[span.banned !{data.lastUsername}] #[span#status.status-result]
+
+        div.d-flex.justify-content-between
+            div.item
+                p#q_uuid !{data.uuid} #[span.fa.fa-clipboard.copybtn.text-primary(data-clipboard-text= data.uuid )]
+            div.item
+                span.coords x: #[strong#x], y: #[strong#y], z: #[strong#z]
+
         div.row
             div.col-lg-4
                 div.card.bg-dark
@@ -44,6 +50,23 @@ html(lang="en")
                         div.card-title
                             label.col-6.col-md-6 Last Join
                             strong #{m.unixToDate(data.lastJoin)}
+
+            
+                br
+                div.card.bg-dark.villages
+                    div.card-header
+                        strong Village Info
+                    div.card-body
+                        div.card-title.owns
+                            label.col-6.col-6 Owns 
+                            span#owned
+                        div.card-title.mem
+                            label.col-6.col-6 Member In 
+                            span#member
+                        div.card-title.asst
+                            label.col-6.col-12 Assistant In 
+                            span#assistant
+
             div.col-lg-4.justify-content-center
                 center
                     img("id"="playerImg")
@@ -75,7 +98,30 @@ html(lang="en")
                         div.card-title
                             label.col-6.col-md-6 Destroyed
                             strong #{m.formatNumber(data.blocksDestroyed)}
-    
+                br
+                div.card.bg-dark.bans
+                    div.card-header
+                        strong Ban Info
+                    div.card-body
+                        div.card-title.own
+                            label.col-6.col-6 Total Bans
+                            span#total-bans
+                        div.card-title.ban-list
+                            label.col-6.col-6 Bans
+                            button(type="button",id="view",data-toggle="modal",data-target="#myModal",).btn.btn-sm.btn-primary View Bans
+
+                div.modal#myModal
+                    div.modal-dialog
+                        div.modal-content.bg-dark
+                            div.modal-header.bg-dark
+                                h4.modal-title.bg-dark
+                                button(type="button",data-dismiss="modal").close &times;
+                            div.modal-body.bg-dark
+                            div.modal-footer.bg-dark
+                                button(type="button",data-dismiss="modal").btn.btn-danger close
+
+
+
     // scripts
     script(src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js")
     script(src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js")

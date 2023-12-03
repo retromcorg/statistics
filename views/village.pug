@@ -1,0 +1,107 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0")
+    meta(name="theme-color", content="#111111")
+    title J-Stats² | Village !{data.name}
+    // links
+    link(href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css", rel="stylesheet")
+    link(href="../assets/style.css", rel="stylesheet")
+  body
+    include ../partials/header.pug
+
+    div.container.mt-5
+        h1 Village !{data.name}
+
+        div.d-flex.justify-content-between
+            div.item 
+                p Owned by #[img(src=`https://crafatar.com/avatars/`+ data.owner +`?size=25&amp;overlay`)] #[a(href="../player/" + data.owner) !{data.username}]
+            div.item
+                p Created on !{m.unixToDate2(data.created)}
+
+        .row
+          .col-lg-4
+            .card.bg-dark
+              .card-header Location
+              .card-body
+                .card-title
+                  label.col-6.col-md-6(style='font-weight: bold;') x
+                  strong #{data.x}
+                .card-title
+                  label.col-6.col-md-6(style='font-weight: bold;') y
+                  strong #{data.y}
+                .card-title
+                  label.col-6.col-md-6(style='font-weight: bold;') z
+                  strong #{data.z}
+                .card-title
+                  label.col-6.col-md-6(style='font-weight: bold;') world
+                  strong #{data.world}
+            br
+          .col-lg-4
+            .card.bg-dark
+              .card-header
+                | Flags
+              .card-body
+                .card-title
+                  label.col-6.col-md-8(style='font-weight: bold;') Invite?
+                  span #{JSON.parse(data.flags).MEMBERS_CAN_INVITE}
+                .card-title
+                  label.col-6.col-md-8(style='font-weight: bold;') Mob Spawn?
+                  span #{JSON.parse(data.flags).MOBS_CAN_SPAWN}
+                .card-title
+                  label.col-6.col-md-8(style='font-weight: bold;') Outside Alter?
+                  span #{JSON.parse(data.flags).RANDOM_CAN_ALTER}
+                .card-title
+                  label.col-6.col-md-8(style='font-weight: bold;') Spawner?
+                  span #{JSON.parse(data.flags).MOB_SPAWNER_BYPASS}
+            br
+          .col-lg-4
+            .card.bg-dark
+              .card-header Statistics
+              .card-body
+                .card-title
+                  label.col-6.col-md-6(style='font-weight: bold;') Money
+                  span #{data.balance}
+                .card-title
+                  label.col-6.col-md-6(style='font-weight: bold;') Assistants
+                  span #{JSON.parse(data.assts).length}
+                .card-title
+                  label.col-6.col-md-6(style='font-weight: bold;') Members
+                  span #{JSON.parse(data.members).length}
+                .card-title
+                  label.col-6.col-md-6(style='font-weight: bold;') Claims
+                  span #{data.claims}
+            br
+        .row
+          .col-lg-6
+            .card.bg-dark
+              .card-header Assistants
+              .card-body(style='max-height: 200px; overflow: scroll;')
+                .p
+                each val, index in data.asstList
+                    img(src="https://crafatar.com/avatars/" + val.uuid +"?size=25&amp;overlay")
+                    a(href="../player/" + val.uuid) !{val.username} &nbsp;
+                    
+            br
+          .col-lg-6
+            .card.bg-dark
+              .card-header Members
+              .card-body(style='max-height: 200px; overflow: scroll;')
+                .p
+                each val, index in data.memberList
+                    img(src="https://crafatar.com/avatars/" + val.uuid +"?size=25&amp;overlay")
+                    a(href="../player/" + val.uuid) !{val.username} &nbsp;
+                    
+                
+
+
+
+    // scripts
+    script(src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js")
+    script(src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js")
+    script(src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js")
+    script(src="https://cdn.jsdelivr.net/npm/clipboard@2.0.10/dist/clipboard.min.js")
+    script(src="../assets/index.js")
+    include ../partials/footer.pug

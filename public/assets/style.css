@@ -21,6 +21,34 @@ a {
 color: #00c377;
 }
 
+.coords {
+    display: none;
+}
+
+.status {
+    display: none;
+}
+
+.villages {
+    display: none;
+}
+.own {
+    display: none;
+}
+
+.ban-list,.bans {
+    display: none;
+}
+
+.villagetb {
+    display: none;
+}
+#is_banned {
+    text-decoration: line-through;
+    text-decoration-color: #dc3545;
+    text-decoration-thickness: 5px !important;
+    }
+
 .dropdown-toggle.active-dropdown::after {
 transform: rotate(-90deg);
 }
@@ -29,10 +57,27 @@ a:hover,a:active {
 color: #00995e;
 }
 
+.mem {
+    display: none;
+}
+.owns {
+    display: none;
+}
+.asst {
+    display: none;
+}
+
+
 
 .bg-dark,.table-dark {
 background-color: #131313 !important;
 }
+
+.chat-scroll-container {
+    max-height: 200px;
+    overflow-y: auto;
+    direction:ltr;
+  }
 
 .alert-dark {
 background-color: #131313 !important;

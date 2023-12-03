@@ -61,7 +61,7 @@ async function u() {
     // step 2, do shit with the players
     server.players.forEach(async element => {
         // get UUID
-        let muuid = await m.getMojangUser(element.username);
+        let muuid = await m.getMojangUser(element.name);
 
         // ONLY PUT IN VALID ACCOUNTS
         if(muuid) {
@@ -72,16 +72,16 @@ async function u() {
                 let check = await m.playerExists(db,muuid.uuid);
                 if(!check) {
                     m.insertPlayer(db, muuid.uuid, data);
-                    console.log(`[j-stats2] ${element.username} is now in the database`);
+                    console.log(`[j-stats2] ${element.name} is now in the database`);
                 }
                 else {
                     m.updatePlayer(db, muuid.uuid, data);
-                    console.log(`[j-stats2] ${element.username} global data updated`);
+                    console.log(`[j-stats2] ${element.name} global data updated`);
                 }
 
                 await m.purgeOldCoords(db);
                 await m.insertCoords(db, muuid.uuid, element.x, element.y, element.z, element.world)
-                console.log(`[j-stats2] ${element.username} coords logged`);
+                console.log(`[j-stats2] ${element.name} coords logged`);
 
             }
         }
