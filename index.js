@@ -329,24 +329,6 @@ app.get('/player/:player', async (req, res) => {
     }
 });
 
-app.get('/player/:player', async (req, res) => {
-    if(req.params.player) {
-        let player = await m.searchUser(req.params.player);
-        if(player) {
-            let user = await(m.getUser(player['uuid']));
-            !user ? res.status(404).render('error', {status: '404', msg: 'User not found.'}) :  res.render('player', {data: user,m});  
-        }
-        else {
-            res.status(404).render('error', {status: '500', msg: 'Oops! Minecraft user does not exist.'});        
-        }
-    }
-    else {
-        res.status(500).render('error', {status: '500', msg: 'Oops! Invalid parameters.'});    
-    }
-});
-
-
-
 app.get('/village/:village', async (req, res) => {
     if(req.params.village) {
         let village = await db('server_villages').where(!m.isUUID(req.params.village) ? {"name": req.params.village} : {"uuid": req.params.village});
