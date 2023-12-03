@@ -55,8 +55,8 @@ async function u() {
     await m.purgeOldPings(db);
     console.log(`[j-stats2] removed any old pings.`);
 
-    await m.insertPlayerCount(db, server.onlinePlayers);
-    console.log(`[j-stats2] pinged server with ${server.onlinePlayers} online.`);
+    await m.insertPlayerCount(db, server.player_count);
+    console.log(`[j-stats2] pinged server with ${server.player_count} online.`);
 
     // step 2, do shit with the players
     server.players.forEach(async element => {
