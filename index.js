@@ -40,7 +40,7 @@ app.use(helmet.xssFilter());
 app.use((err, req, res, next) => {
       res.status(500).render('error', {status: '500', msg: 'Oops! Something went wrong.'});
 });
-  
+
 // get leaderboard
 app.get('/api/leaderboard', async (req, res) => {
     if(req.query['type']) {
@@ -79,7 +79,7 @@ app.post('/api/searchVillages', async (req, res) => {
                     name: element.name,
                     uuid: element.uuid,
                     members: JSON.parse(element.members).length,
-                    assistants: JSON.parse(element.assts).length,
+		assistants: JSON.parse(element.assts).length,
                     claims: element.claims
                 });
             });
@@ -168,29 +168,6 @@ app.get('/api/bans', async (req, res) => {
 
             res.json(b); 
            
-        }
-        else {
-            res.status(500).json({status: false, message: "invalid uuid entered"});    
-        }
-    }
-    else {
-        res.status(500).json({status: false, message: "invalid params"});
-    }
-})
-
-
-// get the user cape string
-app.get('/api/cape', async (req, res) => {
-    if(req.query['uuid']) {
-        if(m.isUUID(req.query['uuid'])) {
-            let cape = await m.getUserCape(req.query['uuid']);
-
-            if(cape) {
-                res.json({ cape: cape, status: true});
-            }
-            else {
-                res.status(404).json({status: false, message: "no cape for this user"});  
-            }
         }
         else {
             res.status(500).json({status: false, message: "invalid uuid entered"});    
@@ -309,19 +286,13 @@ app.get('/api/cape', async (req, res) => {
 
 app.get('/player/:player', async (req, res) => {
     if(req.params.player) {
-        if(!m.isUUID(req.params.player)) {
-            let player = await m.searchUser(db, req.params.player);
-            if(player) {
-                let user = await(m.getUser(player['uuid']));
-                !user ? res.status(404).render('error', {status: '404', msg: 'User not found.'}) :  res.render('player', {data: user,m});  
-            }
-            else {
-                res.status(404).render('error', {status: '500', msg: 'Oops! Minecraft user does not exist.'});        
-            }
+        let player = await m.searchUser(db, req.params.player);
+        if(player) {
+            let user = await(m.getUser(player['uuid']));
+            !user ? res.status(404).render('error', {status: '404', msg: 'User not found.'}) :  res.render('player', {data: user,m});  
         }
         else {
-		let user = await(m.getUser(req.params.player));
-                !user ? res.status(404).render('error', {status: '404', msg: 'User not found.'}) :  res.render('player', {data: user,m});  
+            res.status(404).render('error', {status: '500', msg: 'Oops! Minecraft user does not exist.'});        
         }
     }
     else {

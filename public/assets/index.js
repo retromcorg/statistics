@@ -124,7 +124,6 @@ dataType: 'json',
 success: function(response) {
 if(response.status) {
 
-
 if(response.data.owner.length != 0) {
 let o = [];
 response.data.owner.forEach(l => {
@@ -201,7 +200,9 @@ $.ajax({
 	
 	if(ban.evidence.length != 0) {
 	ban.evidence.forEach(evidence => {
-	e.push(`<a href="${evidence.url.replace(/{{site\.baseurl}}/g, "https://bans.johnymuffin.com")}" target="_blank" rel="noopener">view</a>`);
+		if(evidence.url) {
+	e.push(`<a href="` + evidence.url.replace(/{{site\.baseurl}}/g, "https://bans.johnymuffin.com") + ` target="_blank" rel="noopener">view</a>`);
+		}
 	});
 	}
 	else {
@@ -264,7 +265,7 @@ $("#leaderboard").change(function(event) {
 				builder += `<td class="text-center">${key+1}</td>`;
 				builder += `<td><img src="https://crafatar.com/avatars/${val.uuid}?size=28&overlay">&emsp;<a href="./player/${val.uuid}">${val.username}</a></td>`;
 				if(response.type == 'playTime') {
-				builder += `<td>${val[response.type]}</td>`;
+				builder += `<td>${moment.duration(val[response.type],"seconds").format('hh')} hours</td>`;
 				}
 				else {
 				builder += `<td>${val[response.type].toLocaleString()}</td>`;
