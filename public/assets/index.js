@@ -81,9 +81,19 @@ $("#villageSearch").on('paste', function(e) {
 	}
   });
   
-  
+ 
+if($(".fetchChat").length) {
+
+	setInterval(
+		function () {
+			    loadChat();
+		}, 10000);
+
+}
 
 function loadChat() {
+
+
 
 	$.ajax({
 		url: 'https://api.retromc.org/api/v1/server/chat?startUnixTime=0',
