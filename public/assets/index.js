@@ -109,7 +109,7 @@ function loadChat() {
 		response.messages.forEach(e => {
 		
 	
-			result += `<div class="col-md-12"><span data-toggle="tooltip" title="${moment.unix(e.timestamp).fromNow()}"><img src="https://minotar.net/helm/${e.username}/25.png" alt="${e.username}"></span> <a href="../player/${e.uuid}" id="display">${ motdtocolor(e.display_name)}</a>: ${e.message}</div>`
+			result += `<div class="col-md-12"><span data-toggle="tooltip" title="${moment.unix(e.timestamp).fromNow()}"><img src="https://minotar.net/helm/${e.username}/25.png" alt="${e.username}"></span> <a href="../player/${e.uuid}" id="display">${motdtocolor(e.display_name, e.username)}</a>: ${e.message}</div>`
 		
 		})
 		result += '</div>';
@@ -153,7 +153,7 @@ $(".asst").show();
 }
 
 
-if(response.data.member != 0) {
+if(response.data.member.length != 0) {
 let a = [];
 response.data.member.forEach(k => {
 a.push(`<a href="../village/${k.village_uuid}">${k.village}</a>`);
@@ -161,7 +161,13 @@ a.push(`<a href="../village/${k.village_uuid}">${k.village}</a>`);
 $("#member").html(a.join(", "));
 $(".mem").show();
 }
+
+
+if(!response.data.owner.length && !response.data.assistant.length && !response.data.member.length) {
+	$(".villages").hide();
+} else {
 $(".villages").show();
+}
 }
 }
 
@@ -291,6 +297,14 @@ $("#leaderboard").change(function(event) {
 });
 
 
+// this is cursed idgaf
+if(!$(".m2").length) {
+	$(".m1").text("no members :(");
+}
+if(!$(".a2").length) {
+	$(".a1").text("no assistants :(");
+}
+
 function loadServer() {
 $.ajax({
 url: '../api/server',
@@ -308,7 +322,7 @@ if(response.players) {
 result += '<div class="row">';
 response.online.forEach(e => {
 
-	result += `<div class="col-md-6"><span data-toggle="tooltip" title="x: ${Math.floor(e.coords.x)}, y: ${Math.floor(e.coords.y)}, z: ${Math.floor(e.coords.z)}, world: ${e.coords.world}"><img src="https://minotar.net/helm/${e.username}/25.png" alt="${e[0]}"></span> <a href="player/${e.uuid}" id="display">${ motdtocolor(e.display)}</a></div>`
+	result += `<div class="col-md-6"><span data-toggle="tooltip" title="x: ${Math.floor(e.coords.x)}, y: ${Math.floor(e.coords.y)}, z: ${Math.floor(e.coords.z)}, world: ${e.coords.world}"><img src="https://minotar.net/helm/${e.username}/25.png" alt="${e[0]}"></span> <a href="player/${e.uuid}" id="display">${ motdtocolor(e.display, e.username)}</a></div>`
 
 })
 result += '</div>';

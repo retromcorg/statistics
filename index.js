@@ -41,6 +41,8 @@ app.use((err, req, res, next) => {
       res.status(500).render('error', {status: '500', msg: 'Oops! Something went wrong.'});
 });
 
+
+  
 // get leaderboard
 app.get('/api/leaderboard', async (req, res) => {
     if(req.query['type']) {
