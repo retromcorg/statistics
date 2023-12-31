@@ -6,14 +6,14 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0")
     meta(name="theme-color", content="#111111")
     meta(name="description" content="View "+ data.lastUsername +"'s Profile on RetroMC using J-Stats!")
-    meta(content="https://crafatar.com/avatars/"+ data.uuid+"?size=128&overlay" property="og:image")
+    meta(content="https://skins.legacyminecraft.com/avatars/"+ data.uuid+"?size=128&overlay" property="og:image")
     link(rel="canonical" href="https://j-stats.xyz/player/" + data.uuid)
-    link(rel="icon" href="https://crafatar.com/avatars/"+ data.uuid+"?size=128&overlay")
+    link(rel="icon" href="https://skins.legacyminecraft.com/avatars/"+ data.uuid+"?size=128&overlay")
     title J-Stats² | !{data.lastUsername}
     // links
     link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.0/css/font-awesome.min.css")
     link(href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css", rel="stylesheet")
-    link(href="../assets/style.css", rel="stylesheet")
+    link(href="../assets/style.css?v=" + process.env.assetVersion, rel="stylesheet")
   body
     include ../partials/header.pug
 
@@ -131,6 +131,6 @@ html(lang="en")
     script(src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js")
     script(src="https://cdn.jsdelivr.net/npm/clipboard@2.0.10/dist/clipboard.min.js")
     script(src="../assets/skinview3d.bundle.js")
-    script(src="../assets/index.js?v=5")
+    script(src="../assets/index.js?v=" + process.env.assetVersion)
     script loadPlayerModel()
     include ../partials/footer.pug
