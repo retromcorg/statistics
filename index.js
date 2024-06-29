@@ -47,7 +47,11 @@ app.use((err, req, res, next) => {
 app.get('/api/leaderboard', async (req, res) => {
     if(req.query['type']) {
         if(req.query['type'] in types) {
-            let data = await db("player_data").select("uuid", "username",req.query['type']).orderBy(req.query['type'], "DESC").limit(25);
+            let data = await db("player_data")
+            .select("uuid", "username", req.query['type'])
+            .distinct('uuid') // Ensure distinct UUIDs
+            .orderBy(req.query['type'], "DESC")
+            .limit(25);
 
             res.json({
                 status: true,
